@@ -1,31 +1,31 @@
 package com.sha.backendProject.controller;
 
 import com.sha.backendProject.model.Business;
-import com.sha.backendProject.service.ProductService;
+import com.sha.backendProject.service.BusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/product")
+@RequestMapping("api/business")
 public class BusinessController {
 
     @Autowired
-    private ProductService productService;
+    private BusinessService businessService;
     @PostMapping
-    public ResponseEntity<?> saveProduct(@RequestBody Business product) {
-        return new ResponseEntity<>(productService.saveProduct(product), HttpStatus.CREATED);
+    public ResponseEntity<?> saveBusiness(@RequestBody Business business) {
+        return new ResponseEntity<>(businessService.saveBusiness(business), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("{productId}")
-    public ResponseEntity deleteProduct(@PathVariable Long productId){
-        productService.deleteProduct(productId);
+    @DeleteMapping("{businessId}")
+    public ResponseEntity<?> deleteBusiness(@PathVariable Long businessId){
+        businessService.deleteBusiness(businessId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<?> getAllProducts() {
-        return new ResponseEntity<>(productService.findAllProducts(), HttpStatus.OK);
+    public ResponseEntity<?> getAllBusinesses() {
+        return new ResponseEntity<>(businessService.findAllBusinesses(), HttpStatus.OK);
     }
 }

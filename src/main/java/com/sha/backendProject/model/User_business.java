@@ -3,12 +3,11 @@ package com.sha.backendProject.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "purchase")
-public class Purchase {
+@Table(name = "users_businesses")
+public class User_business {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,6 +1,6 @@
 package com.sha.backendProject.controller;
 
-import com.sha.backendProject.model.Purchase;
+import com.sha.backendProject.model.User_business;
 import com.sha.backendProject.security.UserPrinciple;
 import com.sha.backendProject.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +10,14 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/purchase")
+@RequestMapping("api/purchaseBusiness")
 public class PurchaseBusinessController {
     @Autowired
     private PurchaseService purchaseService;
 
     @PostMapping
-    public ResponseEntity<?> savePurchase(@RequestBody Purchase purchase) {
-        return new ResponseEntity<>(purchaseService.savePurchase(purchase), HttpStatus.CREATED);
+    public ResponseEntity<?> savePurchase(@RequestBody User_business userBusiness) {
+        return new ResponseEntity<>(purchaseService.savePurchase(userBusiness), HttpStatus.CREATED);
     }
 
     @GetMapping

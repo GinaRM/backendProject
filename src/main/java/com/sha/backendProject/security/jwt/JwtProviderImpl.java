@@ -52,7 +52,7 @@ public class JwtProviderImpl implements  JwtProvider{
             return null;
         }
 
-        String username = claims.getSubject();
+        String identification = claims.getSubject();
         Long userId = claims.get("userId", Long.class);
 
         Set<GrantedAuthority> authorities = Arrays.stream(claims.get("roles").toString().split(","))
@@ -60,11 +60,11 @@ public class JwtProviderImpl implements  JwtProvider{
                 .collect(Collectors.toSet());
 
         UserDetails userDetails = UserPrinciple.builder()
-                .username(username)
+                .identification(identification)
                 .authorities(authorities)
                 .id(userId)
                 .build();
-        if (username == null) {
+        if (identification == null) {
             return null;
         }
         return new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
@@ -74,10 +74,8 @@ public class JwtProviderImpl implements  JwtProvider{
         Claims claims = extractClaims(request);
         if(claims == null) {
             return false;
-        } if (claims.getExpiration().before(new Date())) {
-            return false;
         }
-        return true;
+        return !claims.getExpiration().before(new Date());
     }
 
     private Claims extractClaims(HttpServletRequest request) {

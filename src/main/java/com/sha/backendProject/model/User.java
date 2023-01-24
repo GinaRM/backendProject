@@ -44,7 +44,6 @@ public class User {
     private Set<Business> businesses = new HashSet<>();
 
 
-    //role
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;

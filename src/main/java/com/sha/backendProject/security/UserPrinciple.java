@@ -18,7 +18,7 @@ import java.util.Set;
 public class UserPrinciple implements UserDetails {
 
     private Long id;
-    private String username;
+    private String identification;
     transient private String password; //doesn't show up on serialized places.
     transient private User user; //user for only login operation, don't use in JWT.
     private Set<GrantedAuthority> authorities;
@@ -35,7 +35,7 @@ public class UserPrinciple implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return identification;
     }
 
     @Override
